@@ -80,3 +80,8 @@ pub fn set_auth_cookie(account: Account, mut cookies: Cookies) {
     let auth_cookie = Cookie::new(config::TOKEN, token);
     cookies.add_private(auth_cookie);
 }
+
+/// Remove authentication token from cookies
+pub fn unset_auth_cookie(mut cookies: Cookies) {
+    cookies.remove_private(Cookie::named(config::TOKEN));
+}

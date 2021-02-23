@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    color: #382933;
+    max-width: 48rem;
+    margin: 0 auto;
+    text-shadow: 0px 0px 30px #38293355;
+}
+
+h1 {
+    font-size: 4rem;
+    /* color: #519872;
+    text-shadow: 0px 0px 30px #51987255; */
+    color: #845ece;
+    text-shadow: 0px 0px 30px #845ece55;
+}
+
+a,
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    /* background-color: #c3aed670;
+    color: #845ece; */
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    transition: 0.1s;
+    text-decoration: none;
+}
+
+a:hover,
+button:hover {
+    color: whitesmoke;
+}
+
+form div {
+    margin-bottom: 2rem;
+}
+
+form input {
+    min-width: 32rem;
+    border: none;
+    border-bottom: 1px solid #38293322;
+    background-color: transparent;
+    font-size: 1.5rem;
+    transition: 0.1s;
+    display: block;
+    padding: 0.25rem;
+}
+
+form input:focus {
+    padding-left: 0.5rem;
+    background-color: #ffe78f80;
+}
+
+form label {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+textarea {
+    border: none;
+    width: 100%;
+    height: 50vh;
+    font-size: 1rem;
+    background-color: #f4f4f2;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 32rem;
+}
+
+.btn-yes {
+    background-color: #abd4be70;
+    color: #519872;
+}
+
+.btn-yes:hover {
+    background-color: #519872;
+}
+
+.btn-no {
+    background-color: #f0b7b470;
+    color: #f25c54;
+}
+
+.btn-no:hover {
+    background-color: #f25c54;
+}
+
+.error {
+    color: #f25c54;
+}

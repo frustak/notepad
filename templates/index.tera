@@ -1,6 +1,29 @@
 {% extends "base" %}
 {% block content %}
-    <a href="/sign-up">sign up</a>
-    <a href="/sign-in">sign in</a>
-    <a href="/notepad">notepad</a>
+    {% if is_authenticated %}
+
+        <div class="header">
+            <h1>Hey {{ username }}</h1>
+            <a class="btn-no" href="/sign-out">Sign out</a>
+        </div>
+        <h3>Copy & Paste everything you like °˖✧◝(^▿^)◜✧˖°</h3>
+        <h3>Paste it Here ↓ ( ͡° ͜ʖ ͡°) ↓</h3>
+        <form action="/notepad" method="POST">
+            <textarea id="note" name="note">{{ note }}</textarea>
+            <div class="actions">
+                <button class="btn-yes" type="submit">Save</button>
+            </div>
+        </form>
+
+    {% else %}
+
+        <div class="header">
+            <h1>Notepad</h1>
+            <div>
+                <a class="btn-yes" href="/sign-in">Sign in</a><a class="btn-yes" href="/sign-up">Sign up</a>
+            </div>
+        </div>
+        <h3>Copy & Paste everything you like °˖✧◝(^▿^)◜✧˖°</h3>
+
+    {% endif %}
 {% endblock content %}

@@ -3,9 +3,6 @@
 extern crate rocket;
 #[macro_use]
 extern crate diesel;
-extern crate pretty_env_logger;
-#[macro_use]
-extern crate log;
 
 mod auth;
 mod config;
@@ -16,26 +13,26 @@ mod routes;
 mod schema;
 
 use lib::DbConn;
-use rocket_contrib::templates::Template;
+use rocket_contrib::{serve::StaticFiles, templates::Template};
 use routes::*;
 
 fn main() {
-    // pretty_env_logger::init();
-
     rocket::ignite()
         .attach(Template::fairing())
         .attach(DbConn::fairing())
+        .mount("/", StaticFiles::from("static"))
         .mount(
             "/",
             routes![
                 index::get,
+                index::get_unauth,
                 sign_up::get,
                 sign_up::post,
                 sign_in::get,
                 sign_in::post,
-                notepad::get,
-                notepad::get_unauth,
+                sign_out::get,
                 notepad::post,
+                error::get,
             ],
         )
         .launch();

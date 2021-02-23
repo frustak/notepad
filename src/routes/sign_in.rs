@@ -1,5 +1,6 @@
+use super::{error, index};
 use crate::{auth::set_auth_cookie, db::account, models::account::AccountData, DbConn};
-use rocket::{http::Cookies, request::Form};
+use rocket::{http::Cookies, request::Form, response::Redirect};
 use rocket_contrib::templates::{tera::Context, Template};
 
 #[get("/sign-in")]
@@ -8,18 +9,15 @@ pub fn get() -> Template {
 }
 
 #[post("/sign-in", data = "<account_data>")]
-pub fn post(account_data: Form<AccountData>, cookies: Cookies, conn: DbConn) -> Template {
+pub fn post(account_data: Form<AccountData>, cookies: Cookies, conn: DbConn) -> Redirect {
     let signed_account = account::login(&*conn, &account_data.username, &account_data.password);
 
     match signed_account {
         Ok(account) => {
             set_auth_cookie(account, cookies);
 
-            Template::render("success", Context::default())
+            Redirect::to(uri!(index::get))
         }
-        Err(why) => {
-            error!("{}", why);
-            Template::render("error", Context::default())
-        }
+        Err(_) => Redirect::to(uri!(error::get)),
     }
 }
