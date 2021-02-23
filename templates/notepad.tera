@@ -1,0 +1,7 @@
+{% extends "base" %}
+{% block content %}
+    <form action="" method="POST">
+        <label for="note">notepad:</label><br/><br/>
+        <textarea cols="30" id="note" name="note" rows="10">{{ note }}</textarea><br/> <input type="submit" value="save"/>
+    </form>
+{% endblock content %}
